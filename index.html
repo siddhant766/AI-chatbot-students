@@ -18,15 +18,15 @@
     <button class="new-chat">+ New Chat</button>
     <div class="menu-label">AI Chat</div>
     <div class="history">
-      <div class="history-item active">
+      <div class="history-item" id="sidebar-planner">
         <span class="icon">📝</span>
         <p>Study Planner</p>
       </div>
-      <div class="history-item">
+      <div class="history-item" id="sidebar-math">
         <span class="icon">📐</span>
         <p>Math Help</p>
       </div>
-      <div class="history-item">
+      <div class="history-item" id="sidebar-science">
         <span class="icon">🔬</span>
         <p>Science Notes</p>
       </div>
@@ -36,9 +36,9 @@
   <div class="main">
     <nav>
       <div class="nav-links">
-        <span class="active">Dashboard</span>
-        <span>Labs</span>
-        <span>Support</span>
+        <span class="active" id="nav-dashboard">Dashboard</span>
+        <span id="nav-labs">Labs</span>
+        <span id="nav-support">Support</span>
       </div>
       <div class="user-profile">
         <span class="status-indicator"></span>
@@ -46,13 +46,261 @@
       </div>
     </nav>
 
-    <div class="chatbot-container">
-      <iframe 
-        src="https://www.noupe.com/agent/019e67eaa42176dd822995748b94b37b3ae7?skipWelcome=1&isNoupeAgent=1&isNoupeLogo=0&noupeSelectedColor=%230d0d12" 
-        class="chatbot-iframe" 
-        allow="microphone *; display-capture *;"
-        frameborder="0">
-      </iframe>
+    <!-- Main Workspace Container -->
+    <div class="workspace-wrapper">
+      
+      <!-- Left Dynamic Helper Pane -->
+      <div class="helper-pane" id="helper-pane">
+        
+        <!-- 📝 Study Planner Panel -->
+        <div class="helper-panel" id="panel-study-planner">
+          <div class="panel-header">
+            <h3>📝 Study Planner & Focus</h3>
+            <p>Set targets, manage tasks, and count down study blocks.</p>
+          </div>
+          
+          <!-- Pomodoro Timer Card -->
+          <div class="timer-section">
+            <div class="timer-display">
+              <span id="timer-minutes">25</span>:<span id="timer-seconds">00</span>
+            </div>
+            <div class="timer-controls">
+              <button id="timer-start" class="btn-timer-primary">Start</button>
+              <button id="timer-pause" class="btn-timer-secondary">Pause</button>
+              <button id="timer-reset" class="btn-timer-outline">Reset</button>
+            </div>
+            <div class="timer-status" id="timer-status">Ready to study? Let's focus!</div>
+          </div>
+          
+          <!-- Task Checklist -->
+          <div class="checklist-section">
+            <h4>Session Tasks</h4>
+            <div class="add-task-form">
+              <input type="text" id="new-task-input" placeholder="Add study target...">
+              <button id="add-task-btn">+</button>
+            </div>
+            <ul class="task-list" id="task-list">
+              <!-- Tasks injected via Javascript -->
+            </ul>
+          </div>
+        </div>
+
+        <!-- 📐 Math Help Panel -->
+        <div class="helper-panel" id="panel-math-help">
+          <div class="panel-header">
+            <h3>📐 Math Reference & Toolset</h3>
+            <p>Quick reference sheets and calculator helpers.</p>
+          </div>
+          
+          <!-- Interactive Scientific Calculator -->
+          <div class="calculator-section">
+            <div class="calc-screen" id="calc-screen">0</div>
+            <div class="calc-buttons">
+              <button class="calc-btn btn-clear">C</button>
+              <button class="calc-btn btn-del">⌫</button>
+              <button class="calc-btn">(</button>
+              <button class="calc-btn">)</button>
+              
+              <button class="calc-btn btn-math">sin</button>
+              <button class="calc-btn btn-math">cos</button>
+              <button class="calc-btn btn-math">tan</button>
+              <button class="calc-btn btn-operator">/</button>
+              
+              <button class="calc-btn">7</button>
+              <button class="calc-btn">8</button>
+              <button class="calc-btn">9</button>
+              <button class="calc-btn btn-operator">*</button>
+              
+              <button class="calc-btn">4</button>
+              <button class="calc-btn">5</button>
+              <button class="calc-btn">6</button>
+              <button class="calc-btn btn-operator">-</button>
+              
+              <button class="calc-btn">1</button>
+              <button class="calc-btn">2</button>
+              <button class="calc-btn">3</button>
+              <button class="calc-btn btn-operator">+</button>
+              
+              <button class="calc-btn btn-math">π</button>
+              <button class="calc-btn">0</button>
+              <button class="calc-btn">.</button>
+              <button class="calc-btn btn-equal">=</button>
+            </div>
+          </div>
+          
+          <!-- Formulas Quick Reference Sheet -->
+          <div class="formula-references">
+            <h4>Quick Reference Cards</h4>
+            <div class="formula-card">
+              <div class="formula-card-title">Algebra & Exponents</div>
+              <div class="formula-card-content">
+                <p>• Quadratic: <code>x = (-b ± √(b² - 4ac)) / 2a</code></p>
+                <p>• Logarithms: <code>log(ab) = log(a) + log(b)</code></p>
+              </div>
+            </div>
+            <div class="formula-card">
+              <div class="formula-card-title">Trigonometric Identities</div>
+              <div class="formula-card-content">
+                <p>• Pythagorean: <code>sin²θ + cos²θ = 1</code></p>
+                <p>• Double Angle: <code>sin(2θ) = 2sinθcosθ</code></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 🔬 Science Notes Panel -->
+        <div class="helper-panel" id="panel-science-notes">
+          <div class="panel-header">
+            <h3>🔬 Lab Notes Notebook</h3>
+            <p>Save notes on formulas, experiments, and findings instantly.</p>
+          </div>
+          <div class="notebook-section">
+            <textarea id="note-textarea" placeholder="Start typing your chemistry observations, biology diagrams description or formulas here..."></textarea>
+            <div class="notebook-controls">
+              <button id="save-note-btn" class="btn-save">Save Note</button>
+              <button id="clear-note-btn" class="btn-clear-note">Clear Note</button>
+            </div>
+            <div class="note-status-message" id="note-status">Auto-saved state is up to date.</div>
+          </div>
+        </div>
+        
+      </div>
+
+      <!-- Right Chatbot Pane -->
+      <div class="chatbot-pane" id="chatbot-pane">
+        <div class="chatbot-container">
+          <iframe 
+            src="https://www.noupe.com/agent/019e67eaa42176dd822995748b94b37b3ae7?skipWelcome=1&isNoupeAgent=1&isNoupeLogo=0&noupeSelectedColor=%230d0d12" 
+            class="chatbot-iframe" 
+            id="chatbot-iframe"
+            allow="microphone *; display-capture *;"
+            frameborder="0">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- Navigation Content: Labs Tab -->
+      <div class="labs-view" id="labs-view">
+        <div class="labs-grid">
+          <!-- Live Code Editor Sandbox -->
+          <div class="lab-card editor-card">
+            <div class="panel-header">
+              <h3>💻 Code & HTML Sandbox</h3>
+              <p>Write standard code and compile instantly.</p>
+            </div>
+            <div class="editor-wrapper">
+              <textarea id="code-editor" placeholder="<!-- Write your HTML elements here -->
+<div class='custom-card'>
+  <h2>Hello, Code Sandbox!</h2>
+  <p>Modify this and click Compile to see it live.</p>
+</div>
+
+<style>
+.custom-card {
+  background: linear-gradient(135deg, #ff9a3d 0%, #ffc078 100%);
+  color: #09090d;
+  padding: 24px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(255, 154, 61, 0.3);
+}
+</style>"></textarea>
+              <button id="compile-btn" class="btn-compile">Compile Code</button>
+            </div>
+            <div class="output-wrapper">
+              <div class="output-title">Sandbox Output</div>
+              <div class="output-container">
+                <iframe id="sandbox-iframe"></iframe>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Chemical Element Explorer -->
+          <div class="lab-card explorer-card">
+            <div class="panel-header">
+              <h3>🧬 Chemistry Element Explorer</h3>
+              <p>Select elements to read structural weights and profiles.</p>
+            </div>
+            <div class="periodic-grid">
+              <div class="elem-box type-nonmetal" data-name="Hydrogen" data-symbol="H" data-no="1" data-weight="1.008" data-category="Reactive Nonmetal">H</div>
+              <div class="elem-box type-noble" data-name="Helium" data-symbol="He" data-no="2" data-weight="4.002" data-category="Noble Gas">He</div>
+              <div class="elem-box type-alkali" data-name="Lithium" data-symbol="Li" data-no="3" data-weight="6.94" data-category="Alkali Metal">Li</div>
+              <div class="elem-box type-alkaline" data-name="Beryllium" data-symbol="Be" data-no="4" data-weight="9.012" data-category="Alkaline Earth Metal">Be</div>
+              <div class="elem-box type-metalloid" data-name="Boron" data-symbol="B" data-no="5" data-weight="10.81" data-category="Metalloid">B</div>
+              <div class="elem-box type-nonmetal" data-name="Carbon" data-symbol="C" data-no="6" data-weight="12.011" data-category="Reactive Nonmetal">C</div>
+              <div class="elem-box type-nonmetal" data-name="Nitrogen" data-symbol="N" data-no="7" data-weight="14.007" data-category="Reactive Nonmetal">N</div>
+              <div class="elem-box type-nonmetal" data-name="Oxygen" data-symbol="O" data-no="8" data-weight="15.999" data-category="Reactive Nonmetal">O</div>
+            </div>
+            <div class="elem-profile" id="elem-profile">
+              <div class="profile-placeholder">Click any chemical element above to inspect mass levels.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Content: Support Tab -->
+      <div class="support-view" id="support-view">
+        <div class="support-grid">
+          <!-- platform FAQ accordions -->
+          <div class="support-card faq-section">
+            <div class="panel-header">
+              <h3>📚 Academic Help & FAQs</h3>
+              <p>Common questions about learning aids and chatbot usage.</p>
+            </div>
+            <div class="faq-accordion">
+              <div class="faq-accordion-item">
+                <div class="faq-question-btn">How does the integrated chatbot assist me? <span class="faq-arrow">▼</span></div>
+                <div class="faq-answer-content">
+                  <p>The Noupe AI chatbot acts as your personal 24/7 tutor. It can analyze topics, explain scientific concepts, solve mathematics equations step-by-step, and assist you in study outlines.</p>
+                </div>
+              </div>
+              <div class="faq-accordion-item">
+                <div class="faq-question-btn">How do I start a new session? <span class="faq-arrow">▼</span></div>
+                <div class="faq-answer-content">
+                  <p>Click on the <strong>+ New Chat</strong> button at the top-left corner of the page. This instantly resets the chatbot iframe and opens a clean dialogue with the Noupe tutor.</p>
+                </div>
+              </div>
+              <div class="faq-accordion-item">
+                <div class="faq-question-btn">Is my planner task list persistent? <span class="faq-arrow">▼</span></div>
+                <div class="faq-answer-content">
+                  <p>Yes, all study planner targets, Pomodoro settings, and notebooks notes are persistent. We store them locally inside your browser's localStorage, so they will be waiting for you when you return.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Academic Ticket Submission -->
+          <div class="support-card form-section">
+            <div class="panel-header">
+              <h3>📬 Send Support Request</h3>
+              <p>Cannot find the answers you need? Email our support staff.</p>
+            </div>
+            <form id="support-form" onsubmit="return false;">
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="sup-name">Full Name</label>
+                  <input type="text" id="sup-name" placeholder="John Doe" required>
+                </div>
+                <div class="form-field">
+                  <label for="sup-email">Email Address</label>
+                  <input type="email" id="sup-email" placeholder="john@example.com" required>
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="sup-subject">Subject Area</label>
+                <input type="text" id="sup-subject" placeholder="e.g. Science Labs help, Math equation help" required>
+              </div>
+              <div class="form-field">
+                <label for="sup-message">Detailed Inquiry</label>
+                <textarea id="sup-message" placeholder="Describe your question or problem in detail here..." required></textarea>
+              </div>
+              <button type="submit" class="btn-submit-support" id="btn-submit-support">Submit Academic Ticket</button>
+            </form>
+            <div class="support-alert" id="support-success-alert"></div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
