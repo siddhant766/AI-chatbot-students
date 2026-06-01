@@ -1,43 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EDU AI</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EDU AI - Premium Learning Partner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="sidebar">
-  <h2>EDU AI</h2>
-  <button class="new-chat">+ New Chat</button>
-  <div class="menu">AI Chat</div>
-  <div class="history">
-    <p>Study Planner</p>
-    <p>Math Help</p>
-    <p>Science Notes</p>
-  </div>
-</div>
-
-<div class="main">
-  <nav>
-    <span>Dashboard</span>
-    <span>Labs</span>
-    <span>Support</span>
-  </nav>
-
-  <div class="hero">
-    <h1>Welcome Back ✨</h1>
-    <h2>What Can I Help You Learn Today?</h2>
-  </div>
-
-  <div class="chat-box">
-    <textarea id="prompt" placeholder="Ask EDU AI..."></textarea>
-    <button id="sendBtn">Send</button>
+  <div class="sidebar">
+    <div class="brand">
+      <span class="brand-dot"></span>
+      <h2>EDU AI</h2>
+    </div>
+    <button class="new-chat">+ New Chat</button>
+    <div class="menu-label">AI Chat</div>
+    <div class="history">
+      <div class="history-item active">
+        <span class="icon">📝</span>
+        <p>Study Planner</p>
+      </div>
+      <div class="history-item">
+        <span class="icon">📐</span>
+        <p>Math Help</p>
+      </div>
+      <div class="history-item">
+        <span class="icon">🔬</span>
+        <p>Science Notes</p>
+      </div>
+    </div>
   </div>
 
-  <div id="response"></div>
-</div>
+  <div class="main">
+    <nav>
+      <div class="nav-links">
+        <span class="active">Dashboard</span>
+        <span>Labs</span>
+        <span>Support</span>
+      </div>
+      <div class="user-profile">
+        <span class="status-indicator"></span>
+        <span class="profile-name">Student Portal</span>
+      </div>
+    </nav>
 
-<script src="script.js"></script>
+    <div class="chatbot-container">
+      <iframe 
+        src="https://www.noupe.com/agent/019e67eaa42176dd822995748b94b37b3ae7?skipWelcome=1&isNoupeAgent=1&isNoupeLogo=0&noupeSelectedColor=%230d0d12" 
+        class="chatbot-iframe" 
+        allow="microphone *; display-capture *;"
+        frameborder="0">
+      </iframe>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
+

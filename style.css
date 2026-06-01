@@ -1,70 +1,350 @@
-body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#0d0d12;
-color:white;
-display:flex;
-height:100vh;
+/* ==========================================================================
+   EDU AI - Premium Styling & Chatbot Integration
+   ========================================================================== */
+
+:root {
+  --bg-primary: #09090d;
+  --bg-sidebar: #101016;
+  --bg-container: rgba(22, 22, 30, 0.4);
+  --border-color: rgba(255, 255, 255, 0.07);
+  --text-primary: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --accent-color: #ff9a3d;
+  --accent-gradient: linear-gradient(135deg, #ff9a3d 0%, #ffc078 100%);
+  --accent-glow: rgba(255, 154, 61, 0.35);
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.sidebar{
-width:260px;
-background:#111118;
-padding:20px;
-border-right:1px solid #222;
+
+/* Base Styles & Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-.new-chat{
-width:100%;
-padding:12px;
-background:linear-gradient(90deg,#ff9a3d,#ffd08a);
-border:none;
-border-radius:10px;
-cursor:pointer;
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-primary);
+  background-image: 
+    radial-gradient(circle at top right, rgba(255, 154, 61, 0.12), transparent 45%),
+    radial-gradient(circle at bottom left, rgba(255, 192, 120, 0.03), transparent 35%);
+  color: var(--text-primary);
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-.menu,.history p{
-margin-top:20px;
-opacity:.85;
+
+/* Sleek Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
-.main{
-flex:1;
-padding:30px;
-background:radial-gradient(circle at top right,#f1a85f55,transparent 35%);
+
+::-webkit-scrollbar-track {
+  background: transparent;
 }
-nav span{
-margin-right:20px;
-color:#ddd;
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
 }
-.hero{
-text-align:center;
-margin-top:80px;
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
 }
-.hero h1{font-size:48px;}
-.chat-box{
-margin:40px auto;
-max-width:800px;
-display:flex;
-gap:10px;
+
+/* Sidebar Styling */
+.sidebar {
+  width: 280px;
+  background-color: var(--bg-sidebar);
+  border-right: 1px solid var(--border-color);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-shrink: 0;
+  z-index: 10;
 }
-textarea{
-flex:1;
-height:70px;
-padding:15px;
-border-radius:15px;
-background:#1a1a22;
-color:white;
-border:none;
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
 }
-#sendBtn{
-padding:15px 25px;
-border:none;
-border-radius:15px;
-background:#f0b16b;
-cursor:pointer;
+
+.brand-dot {
+  width: 10px;
+  height: 10px;
+  background: var(--accent-gradient);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--accent-glow);
 }
-#response{
-max-width:800px;
-margin:auto;
-background:#16161f;
-padding:20px;
-border-radius:15px;
-white-space:pre-wrap;
+
+.brand h2 {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: linear-gradient(to right, #ffffff, #d1d5db);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
+/* New Chat Button */
+.new-chat {
+  width: 100%;
+  padding: 14px;
+  font-family: var(--font-main);
+  font-weight: 600;
+  font-size: 14px;
+  color: #09090d;
+  background: var(--accent-gradient);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(255, 154, 61, 0.2);
+  transition: var(--transition-smooth);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.new-chat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 154, 61, 0.4);
+}
+
+.new-chat:active {
+  transform: translateY(1px);
+}
+
+/* Menu Items & History */
+.menu-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  opacity: 0.6;
+}
+
+.history {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: var(--transition-smooth);
+}
+
+.history-item .icon {
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+.history-item p {
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.history-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-primary);
+  transform: translateX(4px);
+}
+
+.history-item.active {
+  background: rgba(255, 154, 61, 0.08);
+  border-left: 3px solid var(--accent-color);
+  color: var(--accent-color);
+  padding-left: 11px; /* Offset the 3px border to maintain alignment */
+}
+
+.history-item.active .icon {
+  opacity: 1;
+}
+
+/* Main Panel Styling */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 24px 32px 32px 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top Navigation Bar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 16px;
+  height: 50px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+}
+
+nav span {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  position: relative;
+  padding: 4px 0;
+}
+
+nav span:hover {
+  color: var(--text-primary);
+}
+
+nav span.active {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+nav span.active::after {
+  content: '';
+  position: absolute;
+  bottom: -18px; /* Align with the bottom border line of nav */
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent-color);
+  box-shadow: 0 0 8px var(--accent-color);
+}
+
+/* Profile Section in Nav */
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  background-color: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.profile-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Chatbot Container (Glassmorphic Window Frame) */
+.chatbot-container {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  background: var(--bg-container);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.4),
+    0 5px 15px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  overflow: hidden;
+  position: relative;
+  transition: var(--transition-smooth);
+}
+
+.chatbot-container:hover {
+  border-color: rgba(255, 154, 61, 0.2);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.45),
+    0 0 30px rgba(255, 154, 61, 0.05);
+}
+
+/* Chatbot IFrame styling */
+.chatbot-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 20px;
+  background: transparent;
+  opacity: 0;
+  animation: fadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Keyframes & Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.995) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Responsive Rules */
+@media (max-width: 900px) {
+  body {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 16px 24px;
+  }
+  .brand {
+    margin-bottom: 16px;
+  }
+  .new-chat {
+    margin-bottom: 16px;
+  }
+  .history {
+    display: none; /* Hide sidebar history on mobile to save space */
+  }
+  .menu-label {
+    display: none;
+  }
+  .main {
+    padding: 16px;
+  }
+  nav {
+    margin-bottom: 12px;
+  }
+  nav span.active::after {
+    bottom: -14px;
+  }
+}
+
