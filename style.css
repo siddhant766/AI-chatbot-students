@@ -1,0 +1,70 @@
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#0d0d12;
+color:white;
+display:flex;
+height:100vh;
+}
+.sidebar{
+width:260px;
+background:#111118;
+padding:20px;
+border-right:1px solid #222;
+}
+.new-chat{
+width:100%;
+padding:12px;
+background:linear-gradient(90deg,#ff9a3d,#ffd08a);
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+.menu,.history p{
+margin-top:20px;
+opacity:.85;
+}
+.main{
+flex:1;
+padding:30px;
+background:radial-gradient(circle at top right,#f1a85f55,transparent 35%);
+}
+nav span{
+margin-right:20px;
+color:#ddd;
+}
+.hero{
+text-align:center;
+margin-top:80px;
+}
+.hero h1{font-size:48px;}
+.chat-box{
+margin:40px auto;
+max-width:800px;
+display:flex;
+gap:10px;
+}
+textarea{
+flex:1;
+height:70px;
+padding:15px;
+border-radius:15px;
+background:#1a1a22;
+color:white;
+border:none;
+}
+#sendBtn{
+padding:15px 25px;
+border:none;
+border-radius:15px;
+background:#f0b16b;
+cursor:pointer;
+}
+#response{
+max-width:800px;
+margin:auto;
+background:#16161f;
+padding:20px;
+border-radius:15px;
+white-space:pre-wrap;
+}
